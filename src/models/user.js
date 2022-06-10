@@ -3,13 +3,26 @@ const bcrypt = require("bcrypt");
 const saltRounds = Number(process.env.SALT_KEY);
 
 const UserSchema = new mongoose.Schema({
-    useremail: String,
-    nickname: String,
-    password: String,
-});
-UserSchema.virtual("userId").get(function () {
-    return this._id.toHexString();
-});
+    useremail: {
+        type: String,
+        requirde: true,
+        unique: true,
+    },
+    nickname: {
+        type: String,
+        requirde: true,
+        unique: true,
+    },
+    password: {
+        type: String,
+        requirde: true,
+    },
+},
+    {
+        timestamps: true
+
+    });
+
 UserSchema.set("toJSON", {
     virtuals: true,
 });
@@ -30,4 +43,4 @@ UserSchema.pre("save", function (next) {
     }
 });
 const Users = mongoose.model("User", UserSchema);
-module.exports = {Users, UserSchema};
+module.exports = { Users, UserSchema };
