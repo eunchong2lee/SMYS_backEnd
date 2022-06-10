@@ -16,7 +16,14 @@ module.exports = (req, res, next) => {
         }
 
         const { nickname } = jwt.verify(tokenValue, process.env.NODE_JWT)
+        
+        if(!nickname){
+            res.status(401).send({
+                errorMessage: "로그인 후 이용해주세요"
 
+            });
+            return;
+        }
         Users.findById(nickname).exec().then((user) => {
             res.locals.user = user;
             next();
