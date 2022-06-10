@@ -29,5 +29,5 @@ UserSchema.pre("save", function (next) {
         next();
     }
 });
-
-module.exports = mongoose.model("User", UserSchema);
+const Users = mongoose.model("User", UserSchema);
+module.exports = {Users, UserSchema};

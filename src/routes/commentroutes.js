@@ -3,7 +3,7 @@ dotenv.config()
 const express = require("express");
 // const authMiddleware = require("../middlewares/authMiddleware");
 const commentRouter = express.Router({ mergeParams: true });
-const { Comments, Posts, Users } = require('../models/');
+const { Comments, Users } = require('../models/');
 
 // postid에 해당되는 comment 받아오기
 commentRouter.get("/", async (req, res) => {
