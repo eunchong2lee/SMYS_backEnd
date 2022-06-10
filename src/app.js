@@ -5,7 +5,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require("mongoose");
-const { swaggerUi, specs } = require("./swagger/swagger")
+const authRouter = require("./routes/auth");
+const { swaggerUi, specs } = require("./swagger/swagger");
 
 console.log('env', process.env.NODE_ENV)
 
@@ -19,10 +20,12 @@ const server = async () => {
 
     app.use(express.json());
     app.use(cors());
+    app.use(requestMiddleware);
 
     app.use(express.urlencoded({ extended: false }));
 
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
+    app.use("/api", [authRouter]);
 
     app.get('/', function (req, res) {
       res.send('연결완료');
@@ -36,7 +39,7 @@ const server = async () => {
     }
 
   } catch (err) {
-    return res.status(500).send({ err: err.message })
+    console.log(err);
   }
 }
 
