@@ -76,7 +76,7 @@ authRouter.post("/user/signin", async (req, res) => {
                 return;
         }
 
-        const token = jwt.sign({ useremail: user.useremail }, process.env.NODE_JWT);
+        const token = jwt.sign({ nickname: user.nickname }, process.env.NODE_JWT);
         res.send({
             token,
         });
@@ -100,11 +100,11 @@ authRouter.post("/user/signin", async (req, res) => {
 //     }
 // });
 
-authRouter.get("/signin/me", authMiddleware, async (req, res) => {
+authRouter.get("/user/signin/me", authMiddleware, async (req, res) => {
     const { user } = res.locals;
     res.send({
         user: {
-            useremail: user.useremail
+            usernickname: user.usernickname
         },
     });
 });
