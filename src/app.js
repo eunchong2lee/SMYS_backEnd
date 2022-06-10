@@ -5,7 +5,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const mongoose = require("mongoose");
-const { swaggerUi, specs } = require("./swagger/swagger")
+const {commentRouter} = require('./routes')
+const { swaggerUi, specs } = require("./swagger/swagger");
 
 console.log('env', process.env.NODE_ENV)
 
@@ -22,6 +23,7 @@ const server = async () => {
 
     app.use(express.urlencoded({ extended: false }));
 
+    app.use("/api/board/:boardId/comment", commentRouter);
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
 
     app.get('/', function (req, res) {
@@ -36,7 +38,7 @@ const server = async () => {
     }
 
   } catch (err) {
-    return res.status(500).send({ err: err.message })
+    console.log(err);
   }
 }
 
