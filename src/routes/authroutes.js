@@ -5,20 +5,20 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const {Users} = require("../models/");
+const {Users, Board} = require("../models/");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 
 const userSchema = Joi.object({
-    useremail: Joi.string().email().required(),
-    nickname: Joi.string().alphanum().min(3).max(30).required(),
-    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{4,30}$')).required(),
+    useremail: Joi.string().email().required(), // email 타입
+    nickname: Joi.string().alphanum().min(3).max(30).required(), // 닉네임은 영문숫자 조합으로 최소 3자에서 30자까지
+    password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{4,30}$')).required(), // 비밀번호는 대소문자숫자를 4~30자로 구성
     checkpassword: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{4,30}$')).required(),
 });
 
 
 // 회원가입
-authRouter.post("/signup", async (req, res) => {
+authRouter.post("/user/signup", async (req, res) => {
     try {
         const { useremail, nickname, password, checkpassword } = await userSchema.validateAsync(req.body);
 
@@ -58,12 +58,11 @@ authRouter.post("/signup", async (req, res) => {
 
 
 // 로그인
-
 const authSchema = Joi.object({
     useremail: Joi.string().email().required(),
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{4,30}$')).required(),
 });
-authRouter.post("/signin", async (req, res) => {
+authRouter.post("/user/signin", async (req, res) => {
     try {
         const { useremail, password } = await authSchema.validateAsync(req.body);
         
@@ -88,6 +87,18 @@ authRouter.post("/signin", async (req, res) => {
         });
     }
 });
+
+//마이페이지
+// authRouter.get("/user/nickname", async (req, res) => {
+
+//     try {
+//         const { nickname } = req.params;
+//         const board = await Board.find({ id });
+
+//     } catch(err) {
+//         return res.status(400).json({ err: err.message });
+//     }
+// });
 
 authRouter.get("/signin/me", authMiddleware, async (req, res) => {
     const { user } = res.locals;
