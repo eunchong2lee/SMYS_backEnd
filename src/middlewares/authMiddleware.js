@@ -1,6 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const User = require("../models/user")
+const Users = require("../models/")
 
 module.exports = (req, res, next) => {
     try {
@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
 
         const { userId } = jwt.verify(tokenValue, process.env.NODE_JWT)
 
-        User.findById(userId).exec().then((user) => {
+        Users.findById(userId).exec().then((user) => {
             res.locals.user = user;
             next();
         });

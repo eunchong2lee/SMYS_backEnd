@@ -5,7 +5,7 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const User = require("../models/user");
+const {Users} = require("../models/");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 
@@ -29,7 +29,7 @@ authRouter.post("/signup", async (req, res) => {
             return;
         }
 
-        const exisUsers = await User.find({ nickname, useremail });
+        const exisUsers = await Users.find({ nickname, useremail });
         if (exisUsers.length) {
             res.status(400).send({
                 errorMessage: " 이미 가입된 이메일 또는 닉네임  입니다.",
@@ -44,7 +44,7 @@ authRouter.post("/signup", async (req, res) => {
             return
         };
 
-        const user = new User({ useremail, nickname, password });
+        const user = new Users({ useremail, nickname, password });
         await user.save();
 
         res.status(201).send({});
@@ -67,7 +67,7 @@ authRouter.post("/signin", async (req, res) => {
     try {
         const { useremail, password } = await authSchema.validateAsync(req.body);
         
-        const user = await User.findOne({ useremail }).exec();
+        const user = await Users.findOne({ useremail }).exec();
         const isSamePassword = await bcrypt.compare(password, user.password);
 
         if (!isSamePassword) {

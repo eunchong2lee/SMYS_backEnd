@@ -9,7 +9,7 @@ const { Comments, Users } = require('../models/');
 commentRouter.get("/", async (req, res) => {
 
     try {
-        const { id } = req.params
+        const { blogId } = req.params
         const comments = await Comments.find({ id })
         if (!comments.length) {
             return res.status(400).json({ success: false, errorMessage: "댓글이 없습니다." })
