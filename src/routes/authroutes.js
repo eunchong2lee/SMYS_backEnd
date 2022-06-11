@@ -19,9 +19,10 @@ const userSchema = Joi.object({
 
 // 회원가입
 authRouter.post("/user/signup", async (req, res) => {
+    console.log("hi");
     try {
         const { useremail, nickname, password, checkpassword } = await userSchema.validateAsync(req.body);
-
+        console.log(req.body);
         if (password !== checkpassword) {
             res.status(400).send({
                 errorMessage: "패스워드가 일치 하지 않습니다.",
