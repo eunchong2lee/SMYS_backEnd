@@ -23,8 +23,9 @@ const options = {
   apis: [
     "src/app.js",
     "src/routes/*",
-    "src/swagger/commentswagger.yaml",
-    "src/swagger/authSwagger.yaml"
+    // "src/swagger/commentswagger.yaml",
+    // "src/swagger/authSwagger.yaml",
+    "./swagger/*" // 지우지 말것
     // "src/swagger/test",
   ] //Swagger 파일 연동
   

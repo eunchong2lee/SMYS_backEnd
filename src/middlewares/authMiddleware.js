@@ -14,9 +14,7 @@ module.exports = (req, res, next) => {
             });
             return;
         }
-        console.log(process.env.NODE_JWT);
         const { nickname } = jwt.verify(tokenValue, process.env.NODE_JWT)
-        console.log({nickname});
         
         if(!nickname){
             res.status(401).send({
