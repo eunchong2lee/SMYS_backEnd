@@ -16,14 +16,15 @@ const options = {
     },
     servers: [
       {
-        url: "http://localhost:3000", // 요청 URL
+        url: "http://localhost:3000/api", // 요청 URL
       }],
     
   },
   apis: [
     "src/app.js",
     "src/routes/*",
-    "src/swagger/test.js",
+    "src/swagger/commentswagger.yaml",
+    // "src/swagger/comment.yaml",
     // "src/swagger/test",
   ] //Swagger 파일 연동
   

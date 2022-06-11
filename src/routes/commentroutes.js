@@ -63,15 +63,16 @@ commentRouter.put("/:commentId", authMiddleware, async (req, res) => {
 
 
         const commentfind = await Comments.findOne().and([{ boardId }, { commentId }, { nickname }]);
+
+
         if (!(commentId&&boardId)){
           return res.status(400).json({success: false, errMessage: "required commentId or blogId"});
         };
-
         if (!commentfind) {
-            return res.status(400).json({ success: false, errorMessage: "해당 댓글이 없습니다." });
+            return res.status(400).json({ success: false, errorMessage: "can't required comment" });
         }
         if (nickname !== commentfind.nickname) {
-            return res.status(400).json({ success: false, errorMessage: "자신의 댓글이 아닙니다." });
+            return res.status(400).json({ success: false, errorMessage: "this is not your comment" });
         }
         if (!comment) {
             return res.status(400).json({ success: false, errorMessage: "댓글을 입력하세요" });
@@ -108,7 +109,7 @@ commentRouter.delete("/:commentId",authMiddleware, async (req, res) => {
 
         await Comments.deleteOne({ commentId })
 
-        res.status(200).json({ success: true, Message: "삭제 되었습니다." })
+        res.status(200).json({ success: true, Message: "삭제 되었습니다." });
 
     } catch (err) {
         return res.status(500).json({ err: err.message })
