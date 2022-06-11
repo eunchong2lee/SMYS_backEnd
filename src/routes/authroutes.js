@@ -19,7 +19,6 @@ const userSchema = Joi.object({
 
 // 회원가입
 authRouter.post("/user/signup", async (req, res) => {
-    console.log("hi");
     try {
         const { useremail, nickname, password, checkpassword } = await userSchema.validateAsync(req.body);
         console.log(req.body);
