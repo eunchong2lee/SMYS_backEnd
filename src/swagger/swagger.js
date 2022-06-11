@@ -6,17 +6,17 @@ const options = {
     openapi: "3.0.0",
     info: {
       version: "1.0.0",
-      title: "BASIC RESTAPI 공부",
+      title: "Show My Your Space",
       description:
-        "프로젝트 설명 Node.js RESTAPI 공부 및 SWAGGER 연결",
+        "당신의 방을 자랑하세요",
       license: {
-        name: 'hello world'
+        name: '항해99 7기 4조'
       }
         
     },
     servers: [
       {
-        url: "http://localhost:3000/api", // 요청 URL
+        url: `http://localhost:3000/api`, // 요청 URL
       }],
     
   },
@@ -24,7 +24,7 @@ const options = {
     "src/app.js",
     "src/routes/*",
     "src/swagger/commentswagger.yaml",
-    // "src/swagger/comment.yaml",
+    "src/swagger/authSwagger.yaml"
     // "src/swagger/test",
   ] //Swagger 파일 연동
   

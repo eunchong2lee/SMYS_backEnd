@@ -1,0 +1,87 @@
+tags:
+  - name: "user"
+    description: "회원가입 로그인 등 유저 관련 태그"
+paths:
+  /user/signup:
+    post:
+      tags:
+      - "user"
+      summary: "회원가입"
+      description: "회원가입"
+      parameters:
+        - in: body
+          name: body
+          description: 닉네임은 숫자와 영문을 필수로 포함한 3~30자리, 비밀번호는 숫자와 영문을 필수로 포함한 4~30자리
+          schema:
+            type: object
+            example:
+              useremail: test@email.com
+              nickname: test
+              password: abcd1234
+              checkpassword: abcd1234
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: test@email.com
+                  nickname: test
+                  password: abcd1234
+                  checkpassword: abcd1234
+  /user/signin:
+    post:
+      tags:
+      - "user"
+      summary: "로그인"  
+      description: "로그인"
+      parameters:
+        - in: body
+          name: body
+          description: 닉네임은 숫자와 영문을 필수로 포함한 3~30자리, 비밀번호는 숫자와 영문을 필수로 포함한 4~30자리
+          schema:
+            type: object
+            example:
+              useremail: test@email.com
+              password: abcd1234
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: test@email.com
+                  password: abcd1234
+  /user/signin/me:
+    post:
+      tags:
+      - "user"
+      summary: "회원 확인"  
+      description: "회원 확인"
+      parameters:
+        - in: header
+          name: authorization
+          type: string
+          description: jwt 토큰
+        - in: body
+          name: body
+          description: 닉네임은 숫자와 영문을 필수로 포함한 3~30자리, 비밀번호는 숫자와 영문을 필수로 포함한 4~30자리
+          schema:
+            type: object
+            example:
+              useremail: test@email.com
+              password: abcd1234
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  email: test@email.com
+                  password: abcd1234

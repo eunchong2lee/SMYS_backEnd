@@ -19,9 +19,10 @@ const userSchema = Joi.object({
 
 // 회원가입
 authRouter.post("/user/signup", async (req, res) => {
+    console.log("hi");
     try {
         const { useremail, nickname, password, checkpassword } = await userSchema.validateAsync(req.body);
-
+        console.log(req.body);
         if (password !== checkpassword) {
             res.status(400).send({
                 errorMessage: "패스워드가 일치 하지 않습니다.",
@@ -76,7 +77,7 @@ authRouter.post("/user/signin", async (req, res) => {
                 return;
         }
 
-        const token = jwt.sign({ useremail: user.useremail }, process.env.NODE_JWT);
+        const token = jwt.sign({ nickname: user.nickname }, process.env.NODE_JWT);
         res.send({
             token,
         });
@@ -100,11 +101,11 @@ authRouter.post("/user/signin", async (req, res) => {
 //     }
 // });
 
-authRouter.get("/signin/me", authMiddleware, async (req, res) => {
+authRouter.get("/user/signin/me", authMiddleware, async (req, res) => {
     const { user } = res.locals;
     res.send({
         user: {
-            useremail: user.useremail
+            usernickname: user.usernickname
         },
     });
 });
