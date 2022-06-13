@@ -30,9 +30,7 @@ const server = async () => {
 
     app.use(express.urlencoded({ extended: false }));
     
-	  app.use("/api", boardRouter);
-    app.use("/api", authRouter);
-    app.use("/api/board/:boardId/comment", commentRouter);
+	  app.use("/api", [boardRouter,authRouter, commentRouter, relationRouter]);
 
     app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile, {explorer: true}));
  
