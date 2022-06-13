@@ -4,5 +4,5 @@ module.exports = {
   ...require('./boardroutes'),
   ...require('./authroutes'),
   ...require('./relationroutes'),
-  ...require('./bookmarksLim'),
+  ...require('./bookmarks'),
 }
