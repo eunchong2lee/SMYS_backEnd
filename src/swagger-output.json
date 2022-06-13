@@ -85,6 +85,33 @@
         }
       }
     },
+    "/user/nickname": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "마이페이지",
+        "description": "마이페이지",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
     "/user/signin/me": {
       "get": {
         "tags": [
@@ -295,14 +322,21 @@
         }
       }
     },
-    "/": {
+    "/board/{boardId}/comment/": {
       "get": {
         "tags": [
           "Comment"
         ],
         "summary": "댓글 조회 페이지",
         "description": "댓글 조회 페이지",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -319,6 +353,12 @@
         "summary": "댓글 작성 페이지",
         "description": "댓글 작성 페이지",
         "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -353,7 +393,7 @@
         }
       }
     },
-    "/{commentId}": {
+    "/board/{boardId}/comment/{commentId}": {
       "put": {
         "tags": [
           "Comment"
@@ -361,6 +401,12 @@
         "summary": "댓글 수정 페이지",
         "description": "댓글 수정 페이지",
         "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "commentId",
             "in": "path",
@@ -407,6 +453,12 @@
         "summary": "댓글 삭제 페이지",
         "description": "댓글 삭제 페이지",
         "parameters": [
+          {
+            "name": "boardId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "commentId",
             "in": "path",
