@@ -3,5 +3,6 @@ module.exports = {
   ...require('./commentroutes'),
   ...require('./boardroutes'),
   ...require('./authroutes'),
-  ...require('./relationroutes')
+  ...require('./relationroutes'),
+  ...require('./bookmarksLim'),
 }
