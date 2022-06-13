@@ -8,7 +8,9 @@ const mongoose = require("mongoose");
 
 const {commentRouter, authRouter,boardRouter, relationRouter} = require('./routes');
 
-const { swaggerUi, specs } = require("./swagger/swagger");
+// const { swaggerUi, specs } = require("./swagger/swagger");
+const swaggerUi =require("swagger-ui-express");
+const swaggerFile = require("./swagger-output");
 
 console.log('env', process.env.NODE_ENV);
 
@@ -29,8 +31,8 @@ const server = async () => {
 	  app.use("/api", boardRouter);
     app.use("/api", authRouter);
     app.use("/api/board/:boardId/comment", commentRouter);
-    app.use("/api", relationRouter);
-    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
+
+    app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile, {explorer: true}));
  
 
     app.get('/', function (req, res) {

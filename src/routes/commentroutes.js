@@ -7,6 +7,9 @@ const { Comments, Users, Boards,likeCounts } = require('../models/');
 
 // boardid에 해당되는 comment 받아오기
 commentRouter.get("/", async (req, res) => {
+    // #swagger.tags = ["Comment"]
+    // #swagger.summary = "댓글 조회 페이지"
+    // #swagger.description = "댓글 조회 페이지"
     try {
         const { boardId } = req.params;
         const comments = await Comments.find({ boardId });
@@ -20,6 +23,9 @@ commentRouter.get("/", async (req, res) => {
 
 // boardid에 해당되는 comment 만들기
 commentRouter.post("/",  authMiddleware, async (req, res) => {
+    // #swagger.tags = ["Comment"]
+    // #swagger.summary = "댓글 작성 페이지"
+    // #swagger.description = "댓글 작성 페이지"
     try {
         const { boardId } = req.params;
         const { comment } = req.body;
@@ -57,6 +63,9 @@ commentRouter.post("/",  authMiddleware, async (req, res) => {
 
 // boardId에 해당되는 댓글 수정하기
 commentRouter.put("/:commentId", authMiddleware, async (req, res) => {
+    // #swagger.tags = ["Comment"]
+    // #swagger.summary = "댓글 수정 페이지"
+    // #swagger.description = "댓글 수정 페이지"
     try {
         const { boardId, commentId } = req.params;
         const { comment } = req.body;
@@ -93,6 +102,9 @@ commentRouter.put("/:commentId", authMiddleware, async (req, res) => {
 
 // postid에 해당되는 comment 삭제하기
 commentRouter.delete("/:commentId",authMiddleware, async (req, res) => {
+    // #swagger.tags = ["Comment"]
+    // #swagger.summary = "댓글 삭제 페이지"
+    // #swagger.description = "댓글 삭제 페이지"
     try {
         const { boardId, commentId } = req.params;
         const { nickname } = res.locals.user;
