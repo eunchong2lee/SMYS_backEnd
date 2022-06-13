@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 dotenv.config()
 const express = require("express");
 const authMiddleware = require('../middlewares/authMiddleware');
-const bookmarksLimRouter = express.Router({ mergeParams: true });
+const bookmarksRouter = express.Router({ mergeParams: true });
 const { Users, Boards, Bookmarks } = require('../models');
 
 
@@ -82,4 +82,4 @@ bookmarksLimRouter.put('/board/:boardId/unbookmark', authMiddleware,async (req,r
 });
 
 
-module.exports = {bookmarksLimRouter};
+module.exports = {bookmarksRouter};
