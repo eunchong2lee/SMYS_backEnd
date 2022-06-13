@@ -7,7 +7,7 @@ const { Users, Boards, Bookmarks } = require('../models');
 
 
 // 북마크 추가
-bookmarksLimRouter.put('/board/:boardId/bookmark', authMiddleware,async (req,res)=>{
+bookmarksRouter.put('/board/:boardId/bookmark', authMiddleware,async (req,res)=>{
     // #swagger.tags = ["BookMark"]
     // #swagger.summary = "북마크 추가"
     // #swagger.description = "북마크 추가"
@@ -47,7 +47,7 @@ bookmarksLimRouter.put('/board/:boardId/bookmark', authMiddleware,async (req,res
 
 
 // 북마크 취소
-bookmarksLimRouter.put('/board/:boardId/unbookmark', authMiddleware,async (req,res)=>{
+bookmarksRouter.put('/board/:boardId/unbookmark', authMiddleware,async (req,res)=>{
     // #swagger.tags = ["BookMark"]
     // #swagger.summary = "북마크 취소"
     // #swagger.description = "북마크 취소"
