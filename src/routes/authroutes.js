@@ -5,7 +5,7 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const { Users, Boards } = require("../models/");
+const { Users, Boards, Bookmarks } = require("../models/");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 
@@ -173,15 +173,15 @@ authRouter.post("/user/signin", async (req, res) => {
 });
 
 //마이페이지
-authRouter.get("/user/nickname", authMiddleware, async (req, res) => {
+authRouter.get("/user/mypage", authMiddleware, async (req, res) => {
     // #swagger.tags = ["Auth"]
     // #swagger.summary = "마이페이지"
     // #swagger.description = "마이페이지"
-
     try {
-        const { nickname } = req.params;
-        const board = await Boards.find({ nickname });
-        res.json({ board });
+        const user = res.locals.user;
+        const myboard = await Boards.find({ nickname: user.nickname });
+        const mybookmark = await Bookmarks.find({ nickname: user.nickname });
+        res.json({ myboard, mybookmark });
 
     } catch(err) {
         return res.status(400).json({ err: err.message });

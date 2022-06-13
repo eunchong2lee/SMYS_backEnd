@@ -4,4 +4,5 @@ module.exports = {
   ...require('./user'),
   ...require('./relation'),
   ...require('./likecount'),
+  ...require('./bookmarkLim'),
 }

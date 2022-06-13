@@ -17,7 +17,8 @@ const endpointsFiles = [
     "./routes/authroutes.js",
     "./routes/boardroutes.js",
     "./routes/commentroutes.js",
-    "./routes/relationroutes.js"
+    "./routes/relationroutes.js",
+    "./routes/bookmarksLim.js"
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);
