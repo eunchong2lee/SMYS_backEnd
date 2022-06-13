@@ -23,9 +23,9 @@ boardRouter.post("/board", authMiddleware, async (req, res) => {
 
     const makecount = await likeCounts.create({relation_target: "board", targetId : createdBoards.boardId, relationcount : 0});
   
-    res.json({ boards: createdBoards, makecount });
+    res.status(200).json({success:true, message: "게시글을 작성했습니다.", boards: createdBoards, makecount });
   }catch(err){
-    res.status(400).send({err: err.message});
+    res.status(400).send({success:false, errorMessage: err.message});
   }
 
   });
@@ -38,7 +38,7 @@ boardRouter.get("/board", async (req, res) => {
   // #swagger.summary = "게시글 전체 조회 페이지"
   // #swagger.description = "게시글 전체 조회 페이지"
   const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, image1: 1, goodcnt: 1 }).sort({ createAt: -1 });
-  res.json({ boards });
+  res.status(200).json({ success:true, message: "게시글들을 불러왔습니다.",boards });
 });
 
 // 데이터 목록 중 1개 보기 (CRUD 중 R(read))  
@@ -49,7 +49,7 @@ boardRouter.get("/board/:boardId", async (req, res) => {
     // #swagger.description = "게시글 상세 조회 페이지"
   const { boardId } = req.params;
   const boardfind = await Boards.findOne({ boardId });
-  res.json({ boardfind });
+  res.status(200).json({success: true, message: "게시글을 불러왔습니다.", boardfind });
 });
 
 // 데이터 목록 중 1개 보기 (CRUD 중 R(read))  
@@ -60,7 +60,7 @@ boardRouter.get("/boardcate/:category", async (req, res) => {
     // #swagger.description = "카테고리별 게시글 조회 페이지"
   const { category } = req.params;
   const boardfind = await Boards.findOne({ category });
-  res.json({ boardfind });
+  res.status(200).json({ success:true, message: "불러왔습니다.",boardfind });
 });
 
 // 업데이트 
@@ -87,7 +87,7 @@ boardRouter.put("/board/:boardId/update/", authMiddleware, async (req, res) => {
       });  // 밑에 조건들을 충족 하는 것을 수정함                                    
   }
 
-  res.json({ success: true });
+  res.status(200).json({ success: true , message: "게시글을 수정했습니다."});
 });
 
 //삭제 
@@ -104,7 +104,7 @@ boardRouter.delete("/board/:boardId/delete/", authMiddleware, async (req, res) =
   if (boardOne.length > 0) {
     await Boards.remove({ boardId: Number(boardId) });
   }
-  res.json({ success: true });
+  res.status(200).json({ success: true ,message: "게시글을 삭제했습니다." });
 });
 
 module.exports = { boardRouter };

@@ -14,9 +14,9 @@ commentRouter.get("/board/:boardId/comment/", async (req, res) => {
         const { boardId } = req.params;
         const comments = await Comments.find({ boardId });
 
-        res.status(200).json({ success: true, comments });
+        res.status(200).json({ success: true, message: "complete",comments });
     } catch (err) {
-        return res.status(500).json({ err: err.message });
+        return res.status(500).json({ errorMessage: err.message });
     }
 });
 
@@ -37,7 +37,7 @@ commentRouter.post("/board/:boardId/comment/",  authMiddleware, async (req, res)
 
         //error 코드
         if(!checkUser){
-          return res.status(400).json({success: false, errMessage: "로그인 후 사용하세요"});
+          return res.status(400).json({success: false, errorMessage: "로그인 후 사용하세요"});
         };
         // boardId를 입력하지 않았을 경우 또는 findBoard가 없을 경우
         if ((!boardId)||(!findBoard)){
@@ -53,10 +53,10 @@ commentRouter.post("/board/:boardId/comment/",  authMiddleware, async (req, res)
         const createComment = await Comments.create({ boardId, nickname, comment });
         const makelike = await likeCounts.create({relation_target: 'comment', targetId : createComment.commentId, relationcount : 0})
 
-        res.status(200).json({ success: true, Message: "댓글을 작성했습니다.", createComment , makelike});
+        res.status(200).json({ success: true, message: "댓글을 작성했습니다.", createComment , makelike});
 
     } catch (err) {
-        return res.status(500).json({ err: err.message });
+        return res.status(500).json({ success:false, errorMessage: err.message });
     }
 
 });
@@ -77,7 +77,7 @@ commentRouter.put("/board/:boardId/comment/:commentId", authMiddleware, async (r
 
 
         if (!(commentId&&boardId)){
-          return res.status(400).json({success: false, errMessage: "required commentId or blogId"});
+          return res.status(400).json({success: false, errorMessage: "required commentId or blogId"});
         };
         if (!commentfind) {
             return res.status(400).json({ success: false, errorMessage: "can't required comment" });
@@ -91,10 +91,10 @@ commentRouter.put("/board/:boardId/comment/:commentId", authMiddleware, async (r
 
         const newComment = await Comments.findOneAndUpdate({ commentId }, { $set: { comment } }, { new: true })
 
-        res.status(200).json({ success: true, Message: "변경 성공했습니다.", newComment })
+        res.status(200).json({ success: true, message: "변경 성공했습니다.", newComment })
 
     } catch (err) {
-        return res.status(500).send({ err: err.message })
+        return res.status(500).send({ success: false, errorMessage: err.message })
     }
 
 
@@ -112,7 +112,7 @@ commentRouter.delete("/board/:boardId/comment/:commentId",authMiddleware, async 
         const commentfind = await Comments.findOne().and([{ boardId }, { commentId }, { nickname }]);
 
         if (!(commentId&&boardId)){
-          return res.status(400).json({success: false, errMessage: "required commentId or blogId"});
+          return res.status(400).json({success: false, errorMessage: "required commentId or blogId"});
         };
         if (!commentfind) {
             return res.status(400).json({ success: false, errorMessage: "해당 댓글이 없습니다." });
@@ -123,10 +123,10 @@ commentRouter.delete("/board/:boardId/comment/:commentId",authMiddleware, async 
 
         await Comments.deleteOne({ commentId })
 
-        res.status(200).json({ success: true, Message: "삭제 되었습니다." });
+        res.status(200).json({ success: true, message: "삭제 되었습니다." });
 
     } catch (err) {
-        return res.status(500).json({ err: err.message })
+        return res.status(500).json({ errorMessage: err.message })
     }
 
 })
