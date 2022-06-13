@@ -2,20 +2,27 @@ const dotenv = require('dotenv');
 dotenv.config();
 const express = require("express");
 const boardRouter = express.Router({ mergeParams: true });
-const {Boards,Users} = require("../models/");
-const authMiddleware = require('../middlewares/authMiddleware')
+const {Boards,Users, likeCounts} = require("../models/");
+const authMiddleware = require('../middlewares/authMiddleware');
 
 
 // 데이터 넣기 (CRUD 중 C(create))
 // 게시판에 글을 개시할 수 있다. 
 boardRouter.post("/board", authMiddleware, async (req, res) => {
+  try{
     console.log("req.body");
-    const {boardId,category,title,content,image1} = req.body; 
+    const {boardId,category,title,content,image1} = req.body;
     const { nickname } = res.locals.user;
     console.log(nickname);
-    const createdBoards = await Boards.create({boardId,category,title,content,image1,nickname })
+    const createdBoards = await Boards.create({boardId,category,title,content,image1,nickname });
+
+    const makecount = await likeCounts.create({relation_target: "board", targetId : boardId, relationcount : 0});
   
-    res.json({ boards: createdBoards });
+    res.json({ boards: createdBoards, makecount });
+  }catch(err){
+    res.status(400).send({err: err.message});
+  }
+
   });
   
 

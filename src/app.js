@@ -6,7 +6,7 @@ const app = express();
 const cors = require('cors')
 const mongoose = require("mongoose");
 
-const {commentRouter, authRouter,boardRouter} = require('./routes');
+const {commentRouter, authRouter,boardRouter, relationRouter} = require('./routes');
 
 const { swaggerUi, specs } = require("./swagger/swagger");
 
@@ -29,6 +29,7 @@ const server = async () => {
 	  app.use("/api", boardRouter);
     app.use("/api", authRouter);
     app.use("/api/board/:boardId/comment", commentRouter);
+    app.use("/api", relationRouter);
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
  
 

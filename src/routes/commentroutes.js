@@ -3,7 +3,7 @@ dotenv.config()
 const express = require("express");
 const authMiddleware = require('../middlewares/authMiddleware');
 const commentRouter = express.Router({ mergeParams: true });
-const { Comments, Users } = require('../models/');
+const { Comments, Users, Boards,likeCounts } = require('../models/');
 
 // boardid에 해당되는 comment 받아오기
 commentRouter.get("/", async (req, res) => {
@@ -26,7 +26,7 @@ commentRouter.post("/",  authMiddleware, async (req, res) => {
         const { nickname } = res.locals.user;
         const findBoard = await Boards.findOne({ boardId});
         const checkUser = await Users.findOne({nickname});
-        console.log(findBoard);
+        console.log(findBoard, checkUser);
 
 
         //error 코드
@@ -45,8 +45,9 @@ commentRouter.post("/",  authMiddleware, async (req, res) => {
 
 
         const createComment = await Comments.create({ boardId, nickname, comment });
+        const makelike = await likeCounts.create({relation_target: 'comment', targetId : createComment.commentId, relationcount : 0})
 
-        res.status(200).json({ success: true, Message: "댓글을 작성했습니다.", createComment });
+        res.status(200).json({ success: true, Message: "댓글을 작성했습니다.", createComment , makelike});
 
     } catch (err) {
         return res.status(500).json({ err: err.message });
@@ -61,8 +62,9 @@ commentRouter.put("/:commentId", authMiddleware, async (req, res) => {
         const { comment } = req.body;
         const { nickname} = res.locals.user;
 
-
-        const commentfind = await Comments.findOne().and([{ boardId }, { commentId }, { nickname }]);
+ 
+        const commentfind = await Comments.findOne({boardId, commentId, nickname});
+        //.and([{ boardId }, { commentId }, { nickname }]);
 
 
         if (!(commentId&&boardId)){
