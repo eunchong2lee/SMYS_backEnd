@@ -73,7 +73,7 @@ authRouter.post("/user/signup", async (req, res) => {
         };
 
         // 닉네임 확인
-        const regExp_nickname = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{3,20}$/;
+        const regExp_nickname = /^(?=.*\d)(?=.*[a-zA-Z])[a-zA-Z0-9]{3,20}$/; // 닉네임은 3~20자 영문,숫자 필수
         if (!regExp_nickname.test(nickname)) {
             res.status(400).send({
                 errorMessage: "닉네임의 형식을 확인해주세요.",
@@ -167,7 +167,7 @@ authRouter.post("/user/signin", async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(400).send({
-            errorMessage: "요청한 데이터 형식이 올바르지 않습니다.",
+            errorMessage: err.message
         });
     }
 });

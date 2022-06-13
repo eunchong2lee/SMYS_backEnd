@@ -8,7 +8,7 @@ const doc = {
     description:
         "당신의 방을 자랑하세요",
   },
-  host: `localhost:${process.env.PORT}/api`,
+  host: `${process.env.SWAGGER_PORT}/api`,
   schemes: ["http"],
 };
 

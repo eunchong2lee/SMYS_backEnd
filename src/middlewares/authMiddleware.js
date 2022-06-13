@@ -38,7 +38,7 @@ module.exports = (req, res, next) => {
                 } else {
                     const myNewToken = jwt.sign({ nickname: u.nickname }, process.env.NODE_JWT, { expiresIn: "1m" });
                     res.send({
-                        massage: "new token", myNewToken
+                        message: "new token", myNewToken
                     });
                 }
             });
@@ -49,9 +49,9 @@ module.exports = (req, res, next) => {
                 next();
             });
         }
-    } catch (error) {
+    } catch (err) {
         res.status(401).send({
-            errorMessage: error
+            errorMessage: error.message
         });
         return;
     }
@@ -60,7 +60,7 @@ function verifyToken(token) {
     try {
         return jwt.verify(token, process.env.NODE_JWT);
 
-    } catch (error) {
+    } catch (err) {
         return error.message;
     };
 };
