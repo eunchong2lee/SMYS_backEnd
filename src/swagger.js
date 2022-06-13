@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const swaggerAutogen = require("swagger-autogen")();
 
 const doc = {
@@ -6,7 +7,7 @@ const doc = {
     description:
         "당신의 방을 자랑하세요",
   },
-  host: `localhost:3000/api`,
+  host: `localhost:${process.env.PORT}/api`,
   schemes: ["http"],
 };
 
