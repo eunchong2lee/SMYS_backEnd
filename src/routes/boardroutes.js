@@ -16,12 +16,12 @@ boardRouter.post("/board", authMiddleware, async (req, res) => {
     // #swagger.description = "게시글 작성 페이지"
   try{
     console.log("req.body");
-    const {boardId,category,title,content,image1} = req.body;
+    const {category,title,content,image1} = req.body;
     const { nickname } = res.locals.user;
     console.log(nickname);
-    const createdBoards = await Boards.create({boardId,category,title,content,image1,nickname });
+    const createdBoards = await Boards.create({category,title,content,image1,nickname });
 
-    const makecount = await likeCounts.create({relation_target: "board", targetId : boardId, relationcount : 0});
+    const makecount = await likeCounts.create({relation_target: "board", targetId : createdBoards.boardId, relationcount : 0});
   
     res.json({ boards: createdBoards, makecount });
   }catch(err){

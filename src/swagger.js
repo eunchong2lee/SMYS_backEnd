@@ -7,7 +7,7 @@ const doc = {
     description:
         "당신의 방을 자랑하세요",
   },
-  host: `localhost:${process.env.PORT}/api`,
+  host: "localhost:3000/api",
   schemes: ["http"],
 };
 
@@ -16,6 +16,7 @@ const endpointsFiles = [
     "./routes/authroutes.js",
     "./routes/boardroutes.js",
     "./routes/commentroutes.js",
+    "./routes/relationroutes.js"
 ];
 
 swaggerAutogen(outputFile, endpointsFiles, doc);

@@ -5,6 +5,9 @@ const { Comments, Users, Boards, likeCounts, Relations } = require('../models/')
 
 
 relationRouter.put('/like/:target/:Id', authMiddleware,async (req,res)=>{
+    // #swagger.tags = ["Like"]
+    // #swagger.summary = "좋아요 누르기 (게시글, 댓글)"
+    // #swagger.description = "좋아요 누르기 (게시글, 댓글)"
   try{
     const { target, Id} = req.params;
     const { nickname } = res.locals.user;
@@ -44,6 +47,9 @@ relationRouter.put('/like/:target/:Id', authMiddleware,async (req,res)=>{
 
 // board 좋아요 취소
 relationRouter.put('/cancellike/:target/:Id', authMiddleware,async (req,res)=>{
+    // #swagger.tags = ["Like"]
+    // #swagger.summary = "좋아요 취소 (게시글, 댓글)"
+    // #swagger.description = "좋아요 취소 (게시글, 댓글)"
   try{
     const { target, Id} = req.params;
     const { nickname } = res.locals.user;

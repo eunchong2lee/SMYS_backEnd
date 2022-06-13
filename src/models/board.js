@@ -1,11 +1,9 @@
 const mongoose = require("mongoose");
-
+const autoIncrement = require("mongoose-sequence")(mongoose);
 const boardsSchema = mongoose.Schema({
     // 게시판 번호 
     boardId:{ 
        type : Number, 
-       required : true, 
-       unique : true,
     },
     // 작성자 명 
     category: {
@@ -18,7 +16,7 @@ const boardsSchema = mongoose.Schema({
         required : true, 
     },
     // 내용
-    content: {
+    content: {  
         type : String, 
         required : true,
     },
@@ -39,8 +37,13 @@ const boardsSchema = mongoose.Schema({
         timestamps: true, // 생성, 업데이트 시간 설정
 
 });
+boardsSchema.plugin(autoIncrement, {
+    inc_field: "boardId",
+  });
+
 
 const Boards = mongoose.model("Board", boardsSchema);
+
 
 module.exports = { Boards, boardsSchema };
  
