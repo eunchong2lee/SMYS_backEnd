@@ -5,7 +5,7 @@
     "description": "당신의 방을 자랑하세요",
     "version": "1.0.0"
   },
-  "host": "3.39.223.175/api",
+  "host": "http://3.39.223.175//api",
   "basePath": "/",
   "schemes": [
     "http"
