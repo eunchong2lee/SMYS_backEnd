@@ -151,7 +151,16 @@ authRouter.post("/user/signin", async (req, res) => {
             return;
         }
 
-        const token = jwt.sign({ nickname: user.nickname }, process.env.NODE_JWT);
+        const token = jwt.sign({ nickname: user.nickname }, process.env.NODE_JWT, {
+            expiresIn: "1h",
+        });
+        const refreshToken = jwt.sign({}, process.env.NODE_JWT, {
+            expiresIn: "14d",
+        });
+        await user.update(
+            { refreshToken },
+            { where: { nickname: user.nickname} }
+        );        
         res.send({
             token,
         });
