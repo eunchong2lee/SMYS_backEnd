@@ -18,5 +18,6 @@ const bookmarkschema = new mongoose.Schema({
         // 즐겨찾기 누른 시간.
 });
 
+//주석처리
 const Bookmarks = mongoose.model("Bookmark", bookmarkschema);
 module.exports = { Bookmarks, bookmarkschema }
