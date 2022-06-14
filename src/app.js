@@ -22,7 +22,9 @@ const requestMiddleware = ((req, res, next) => {
 });
 const server = async () => {
   try {
-    await mongoose.connect(process.env.NODE_MONGOOSE, { ignoreUndefined: true });
+    if(process.env.NODE_ENV !== 'test'){
+      await mongoose.connect(process.env.NODE_MONGOOSE, { ignoreUndefined: true });
+    }
 
     app.use(express.json());
     app.use(cors());
@@ -34,10 +36,6 @@ const server = async () => {
 
     app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerFile, {explorer: true}));
  
-
-    app.get('/', function (req, res) {
-      res.send('연결완료');
-    })
 
     // if (process.env.NODE_ENV !== 'test') {
     //   app.listen(process.env.PORT, () => {
