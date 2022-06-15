@@ -1,13 +1,21 @@
 const mongoose = require("mongoose");
+const autoIncrement = require("mongoose-sequence")(mongoose);
+
 const bookmarkschema = new mongoose.Schema({
-    boardId: {
+    bookmarkId: {
+        type: Number,
+    },
+
+    targetId: {
         type: Number,
         required: true,
     },
+
     nickname: {
         type: String,
         required: true,
     },
+
     bookmark: {
         type: Boolean,
         required: true,
@@ -18,6 +26,9 @@ const bookmarkschema = new mongoose.Schema({
         // 즐겨찾기 누른 시간.
 });
 
-//주석처리
-const Bookmarks = mongoose.model("Bookmark", bookmarkschema);
-module.exports = { Bookmarks, bookmarkschema }
+bookmarkschema.plugin(autoIncrement, {
+    inc_field: "bookmarkId",
+});
+
+const Bookmark = mongoose.model("Bookmark", bookmarkschema);
+module.exports = { Bookmark, bookmarkschema }
