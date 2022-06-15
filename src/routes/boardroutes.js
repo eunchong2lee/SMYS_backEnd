@@ -1,6 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const express = require("express");
+const multer = require('../lib/multer')
 const boardRouter = express.Router({ mergeParams: true });
 
 const {Boards,Users, likeCounts} = require("../models/");
@@ -10,16 +11,45 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 // 데이터 넣기 (CRUD 중 C(create))
 // 게시판에 글을 개시할 수 있다. 
-boardRouter.post("/board", authMiddleware, async (req, res) => {
+boardRouter.post("/board", authMiddleware, multer.array('images',5),async (req, res) => {
     // #swagger.tags = ["Board"]
     // #swagger.summary = "게시글 작성 페이지"
     // #swagger.description = "게시글 작성 페이지"
   try{
-    console.log("req.body");
-    const {category,title,content,image1} = req.body;
+    const [image1, image2, image3, image4, image5] = req.files;
+    let image1transforms = null;
+    let image2transforms = null;
+    let image3transforms = null;
+    let image4transforms = null;
+    let image5transforms = null;
+    if(image1 !== undefined){
+      image1transforms = image1.transforms[0].location;
+    }
+    if(image2 !== undefined){
+      image2transforms = image2.transforms[0].location;
+
+    }
+    if(image3 !== undefined){
+      image3transforms = image3.transforms[0].location;
+    }
+    if(image4 !== undefined){
+      image4transforms = image4.transforms[0].location;
+    }
+    if(image5 !== undefined){
+      image5transforms = image5.transforms[0].location;
+    }
+    const images = {
+      image1 : image1transforms,
+      image2 : image2transforms,
+      image3 : image3transforms,
+      image4 : image4transforms,
+      image5 : image5transforms
+    }
+
+    const {category,title,content} = req.body;
     const { nickname } = res.locals.user;
     console.log(nickname);
-    const createdBoards = await Boards.create({category,title,content,image1,nickname });
+    const createdBoards = await Boards.create({category,title,content,images,nickname });
 
     const makecount = await likeCounts.create({relation_target: "board", targetId : createdBoards.boardId, relationcount : 0});
   

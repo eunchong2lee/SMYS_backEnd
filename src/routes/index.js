@@ -5,4 +5,5 @@ module.exports = {
   ...require('./authroutes'),
   ...require('./relationroutes'),
   ...require('./bookmarks'),
+  ...require('./test')
 }
