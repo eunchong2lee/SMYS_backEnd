@@ -21,7 +21,7 @@ const boardsSchema = mongoose.Schema({
         required : true,
     },
     // 이미지
-    image1: {
+    images: {
         type : String, 
         required : false,
     },

@@ -67,7 +67,7 @@ boardRouter.get("/board", async (req, res) => {
   // #swagger.tags = ["Board"]
   // #swagger.summary = "게시글 전체 조회 페이지"
   // #swagger.description = "게시글 전체 조회 페이지"
-  const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, image1: 1, goodcnt: 1 }).sort({ createAt: -1 });
+  const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, images: 1, goodcnt: 1 }).sort({ createAt: -1 });
   res.status(200).json({ success:true, message: "게시글들을 불러왔습니다.",boards });
 });
 
@@ -101,7 +101,7 @@ boardRouter.put("/board/:boardId/update/", authMiddleware, async (req, res) => {
     // #swagger.summary = "게시글 수정 페이지"
     // #swagger.description = "게시글 수정 페이지"
   const { boardId } = req.params;
-  const { category, title, content, image1 } = req.body;
+  const { category, title, content, images } = req.body;
   const user = res.locals.user;
   //console.log(password);
 
@@ -112,7 +112,7 @@ boardRouter.put("/board/:boardId/update/", authMiddleware, async (req, res) => {
       , {
         "$set": {
           category: category, title: title
-          , content: content, image1: image1
+          , content: content, images: images
         }
       });  // 밑에 조건들을 충족 하는 것을 수정함                                    
   }
