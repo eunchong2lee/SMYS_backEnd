@@ -11,46 +11,47 @@ const authMiddleware = require('../middlewares/authMiddleware');
 
 // 데이터 넣기 (CRUD 중 C(create))
 // 게시판에 글을 개시할 수 있다. 
-boardRouter.post("/board", authMiddleware, multer.array('images',5),async (req, res) => {
+boardRouter.post("/board", authMiddleware , async (req, res) => {
     // #swagger.tags = ["Board"]
     // #swagger.summary = "게시글 작성 페이지"
     // #swagger.description = "게시글 작성 페이지"
   try{
-    const [image1, image2, image3, image4, image5] = req.files;
-    let image1transforms = null;
-    let image2transforms = null;
-    let image3transforms = null;
-    let image4transforms = null;
-    let image5transforms = null;
-    if(image1 !== undefined){
-      image1transforms = image1.transforms[0].location;
-    }
-    if(image2 !== undefined){
-      image2transforms = image2.transforms[0].location;
+    // const [image1, image2, image3, image4, image5] = req.files;
+    // let image1transforms = null;
+    // let image2transforms = null;
+    // let image3transforms = null;
+    // let image4transforms = null;
+    // let image5transforms = null;
+    // if(image1 !== undefined){
+    //   image1transforms = image1.transforms[0].location;
+    // }
+    // if(image2 !== undefined){
+    //   image2transforms = image2.transforms[0].location;
 
-    }
-    if(image3 !== undefined){
-      image3transforms = image3.transforms[0].location;
-    }
-    if(image4 !== undefined){
-      image4transforms = image4.transforms[0].location;
-    }
-    if(image5 !== undefined){
-      image5transforms = image5.transforms[0].location;
-    }
-    const images = {
-      image1 : image1transforms,
-      image2 : image2transforms,
-      image3 : image3transforms,
-      image4 : image4transforms,
-      image5 : image5transforms
-    }
+    // }
+    // if(image3 !== undefined){
+    //   image3transforms = image3.transforms[0].location;
+    // }
+    // if(image4 !== undefined){
+    //   image4transforms = image4.transforms[0].location;
+    // }
+    // if(image5 !== undefined){
+    //   image5transforms = image5.transforms[0].location;
+    // }
+    // const images = {
+    //   image1 : image1transforms,
+    //   image2 : image2transforms,
+    //   image3 : image3transforms,
+    //   image4 : image4transforms,
+    //   image5 : image5transformsz
+    // }
 
-    const {category,title,content} = req.body;
+    const {category,title,content,image1,image2,image3,image4,iamge5} = req.body;
     const { nickname } = res.locals.user;
     console.log(nickname);
-    const createdBoards = await Boards.create({category,title,content,images,nickname });
-
+    console.log(image1);
+    const createdBoards = await Boards.create({category,title,content,image1,image2,image3,image4,iamge5,nickname });
+    //console.log(createBoards);
     const makecount = await likeCounts.create({relation_target: "board", targetId : createdBoards.boardId, relationcount : 0});
   
     res.status(200).json({success:true, message: "게시글을 작성했습니다.", boards: createdBoards, makecount });
@@ -67,7 +68,7 @@ boardRouter.get("/board", async (req, res) => {
   // #swagger.tags = ["Board"]
   // #swagger.summary = "게시글 전체 조회 페이지"
   // #swagger.description = "게시글 전체 조회 페이지"
-  const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, images: 1, goodcnt: 1 }).sort({ createAt: -1 });
+  const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, image1: 1,iamge2:1,image3:1,iamge4:1,image5:1, goodcnt: 1 }).sort({ createAt: -1 });
   res.status(200).json({ success:true, message: "게시글들을 불러왔습니다.",boards });
 });
 
@@ -101,7 +102,7 @@ boardRouter.put("/board/:boardId/update/", authMiddleware, async (req, res) => {
     // #swagger.summary = "게시글 수정 페이지"
     // #swagger.description = "게시글 수정 페이지"
   const { boardId } = req.params;
-  const { category, title, content, images } = req.body;
+  const { category, title, content,image1,image2,image3,image4,iamge5 } = req.body;
   const user = res.locals.user;
   //console.log(password);
 
@@ -112,7 +113,9 @@ boardRouter.put("/board/:boardId/update/", authMiddleware, async (req, res) => {
       , {
         "$set": {
           category: category, title: title
-          , content: content, images: images
+          , content: content,image1
+                     ,image2,image3
+                     ,image4,iamge5
         }
       });  // 밑에 조건들을 충족 하는 것을 수정함                                    
   }

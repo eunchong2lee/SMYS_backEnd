@@ -20,8 +20,28 @@ const boardsSchema = mongoose.Schema({
         type : String, 
         required : true,
     },
-    // 이미지
-    images: {
+    // 이미지 1
+    image1: {
+        type : String, 
+        required : false,
+    },
+     // 이미지 2
+     image2: {
+        type : String, 
+        required : false,
+    },
+     // 이미지 3
+     image3: {
+        type : String, 
+        required : false,
+    },
+     // 이미지 4 
+     image4: {
+        type : String, 
+        required : false,
+    },
+     // 이미지 5 
+     image5: {
         type : String, 
         required : false,
     },
