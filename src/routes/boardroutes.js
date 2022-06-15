@@ -4,7 +4,7 @@ const express = require("express");
 const multer = require('../lib/multer')
 const boardRouter = express.Router({ mergeParams: true });
 
-const {Boards,Users, likeCounts} = require("../models/");
+const {Boards ,Users, likeCounts} = require("../models/");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 
@@ -46,11 +46,12 @@ boardRouter.post("/board", authMiddleware , async (req, res) => {
     //   image5 : image5transformsz
     // }
 
-    const {category,title,content,image1,image2,image3,image4,iamge5} = req.body;
+    const {category,title,content,image1,image2,image3,image4,image5} = req.body;
     const { nickname } = res.locals.user;
     console.log(nickname);
     console.log(image1);
-    const createdBoards = await Boards.create({category,title,content,image1,image2,image3,image4,iamge5,nickname });
+    const createdBoards = await Boards.create({category,title,content
+                         ,image1,image2,image3,image4,image5,nickname });
     //console.log(createBoards);
     const makecount = await likeCounts.create({relation_target: "board", targetId : createdBoards.boardId, relationcount : 0});
   
@@ -68,7 +69,7 @@ boardRouter.get("/board", async (req, res) => {
   // #swagger.tags = ["Board"]
   // #swagger.summary = "게시글 전체 조회 페이지"
   // #swagger.description = "게시글 전체 조회 페이지"
-  const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, image1: 1,iamge2:1,image3:1,iamge4:1,image5:1, goodcnt: 1 }).sort({ createAt: -1 });
+  const boards = await Boards.find({}, { boardId: 1, nickname: 1, category: 1, title: 1, content: 1, image1: 1,image2:1,image3:1,image4:1,image5:1, goodcnt: 1 }).sort({ createAt: -1 });
   res.status(200).json({ success:true, message: "게시글들을 불러왔습니다.",boards });
 });
 
@@ -79,7 +80,7 @@ boardRouter.get("/board/:boardId", async (req, res) => {
     // #swagger.summary = "게시글 상세 조회 페이지"
     // #swagger.description = "게시글 상세 조회 페이지"
   const { boardId } = req.params;
-  const boardfind = await Boards.findOne({ boardId });
+  const boardfind = await Boards.findOne({boardId});
   res.status(200).json({success: true, message: "게시글을 불러왔습니다.", boardfind });
 });
 
@@ -90,7 +91,7 @@ boardRouter.get("/boardcate/:category", async (req, res) => {
     // #swagger.summary = "카테고리별 게시글 조회 페이지"
     // #swagger.description = "카테고리별 게시글 조회 페이지"
   const { category } = req.params;
-  const boardfind = await Boards.findOne({ category });
+  const boardfind = await Boards.find({ category });
   res.status(200).json({ success:true, message: "불러왔습니다.",boardfind });
 });
 
@@ -102,20 +103,20 @@ boardRouter.put("/board/:boardId/update/", authMiddleware, async (req, res) => {
     // #swagger.summary = "게시글 수정 페이지"
     // #swagger.description = "게시글 수정 페이지"
   const { boardId } = req.params;
-  const { category, title, content,image1,image2,image3,image4,iamge5 } = req.body;
+  const { category, title, content,image1,image2,image3,image4,image5 } = req.body;
   const user = res.locals.user;
   //console.log(password);
 
   const boardOne = await Boards.find({ boardId: Number(boardId), nickname: user.nickname })
-  console.log(boardOne.length);
+  //console.log(boardOne.length);
   if (boardOne.length > 0) {
-    await Boards.updateOne({ boardId: Number(boardId) }                            // 조건문 수정하고자 하는 번호가 같을 때 
+    await Boards.updateOne({ boardId: Number(boardId) }  // 조건문 수정하고자 하는 번호가 같을 때 
       , {
         "$set": {
           category: category, title: title
-          , content: content,image1
-                     ,image2,image3
-                     ,image4,iamge5
+          , content: content,image1 : image1
+                     ,image2 : image2 , image3 : image3
+                     ,image4 : image4 , image5 : image5
         }
       });  // 밑에 조건들을 충족 하는 것을 수정함                                    
   }
