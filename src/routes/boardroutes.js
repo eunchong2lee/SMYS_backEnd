@@ -4,7 +4,7 @@ const express = require("express");
 const multer = require('../lib/multer')
 const boardRouter = express.Router({ mergeParams: true });
 
-const {Boards,Users, likeCounts} = require("../models/");
+const {Boards,Users, likeCounts, BookmarkCnt} = require("../models/");
 const authMiddleware = require('../middlewares/authMiddleware');
 
 
@@ -53,8 +53,9 @@ boardRouter.post("/board", authMiddleware , async (req, res) => {
     const createdBoards = await Boards.create({category,title,content,image1,image2,image3,image4,iamge5,nickname });
     //console.log(createBoards);
     const makecount = await likeCounts.create({relation_target: "board", targetId : createdBoards.boardId, relationcount : 0});
-  
-    res.status(200).json({success:true, message: "게시글을 작성했습니다.", boards: createdBoards, makecount });
+    const bookmarkCnt = await BookmarkCnt.create({ targetId: createdBoards.boardId, bookmarkCnt : 0});
+
+    res.status(200).json({success:true, message: "게시글을 작성했습니다.", boards: createdBoards, makecount, bookmarkCnt });
   }catch(err){
     res.status(400).send({success:false, errorMessage: err.message});
   }

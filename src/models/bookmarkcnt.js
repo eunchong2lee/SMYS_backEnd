@@ -1,14 +1,11 @@
 const mongoose = require("mongoose");
+
 const bookmarkcntschema = new mongoose.Schema({
-    bookmark_target: {
-        type: String,
-        required: true,
-    },
-    bookmarkId: {
+    targetId: {
         type: Number,
         required: true,
     },
-    bookmarkcount: {
+    bookmarkCnt: {
         type: Number,
         required: true,
     },
@@ -18,5 +15,5 @@ const bookmarkcntschema = new mongoose.Schema({
         // 즐겨찾기 누른 시간.
 });
 
-const BookmarkCnt = mongoose.model("bookmarkcnt", bookmarkcountschema);
+const BookmarkCnt = mongoose.model("bookmarkcnt", bookmarkcntschema);
 module.exports = { BookmarkCnt, bookmarkcntschema }

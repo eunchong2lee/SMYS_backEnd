@@ -1,14 +1,9 @@
 const mongoose = require("mongoose");
 const autoIncrement = require("mongoose-sequence")(mongoose);
-const bookmarkschema = new mongoose.Schema({
-    bookmark_target: {
-        type: String,
-        required: true,
-    },
 
-    boardId: {
+const bookmarkschema = new mongoose.Schema({
+    bookmarkId: {
         type: Number,
-        required: true,
     },
 
     targetId: {
@@ -31,9 +26,9 @@ const bookmarkschema = new mongoose.Schema({
         // 즐겨찾기 누른 시간.
 });
 
-relationschema.plugin(autoIncrement, {
-    inc_field: "boardId",
-  });
+bookmarkschema.plugin(autoIncrement, {
+    inc_field: "bookmarkId",
+});
 
-const Bookmarks = mongoose.model("Bookmark", bookmarkschema);
-module.exports = { Bookmarks, bookmarkschema }
+const Bookmark = mongoose.model("Bookmark", bookmarkschema);
+module.exports = { Bookmark, bookmarkschema }

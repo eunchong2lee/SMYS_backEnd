@@ -5,7 +5,7 @@ const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const { Users, Boards, Bookmarks } = require("../models/");
+const { Users, Boards, Bookmark } = require("../models/");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 // 회원가입 정규식
@@ -138,7 +138,7 @@ authRouter.get("/user/mypage", authMiddleware, async (req, res) => {
     try {
         const user = res.locals.user;
         const myboard = await Boards.find({ nickname: user.nickname });
-        const mybookmark = await Bookmarks.find({ nickname: user.nickname });
+        const mybookmark = await Bookmark.find({ nickname: user.nickname });
         res.json({ myboard, mybookmark });
 
     } catch(err) {
