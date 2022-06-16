@@ -19,7 +19,7 @@
   
   * 이은총 : 댓글 CRUD, 댓글 및 게시글 좋아요, 좋아요 수
    
-  * 안재훈 : 게시글 CRUD, multer-s3, 
+  * 안재훈 : 게시글 CRUD, multer-s3, da#을 통한 erd 제작  
 
 # 🔨 Tech Stack
 Back-end Tech Stack
