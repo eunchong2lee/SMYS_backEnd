@@ -60,6 +60,8 @@ https://www.notion.so/4-SA-10d2f2e0e96947a8b0eb8237690e0606#a83353ea63f242ff8814
 
 https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Flow
 
+file:///Users/ieunchong/Downloads/Copy%20of%20Show%20me%20your%20space.pdf
+
 # Table 설계
 
 
