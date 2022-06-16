@@ -53,16 +53,11 @@ Deploy
 
 https://www.notion.so/4-SA-10d2f2e0e96947a8b0eb8237690e0606#a83353ea63f242ff881434099e5de764
 
-# 와이어 프레임
-
-https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Flow
-
-
 
 # Table 설계
 
 
-# https://stackjava.com/wp-content/uploads/2018/05/swagger-icon-300x300.png swagger
+# (https://stackjava.com/wp-content/uploads/2018/05/swagger-icon-300x300.png) swagger
 ![스웨거1](https://user-images.githubusercontent.com/81402579/174002638-52cabd6b-de27-4062-9968-02a6086ba231.png)
 ![스웨거2](https://user-images.githubusercontent.com/81402579/174002649-5135281e-c3f5-46df-9ab1-b09244c0358d.png)
 ![스웨거3](https://user-images.githubusercontent.com/81402579/174002658-34329e29-660c-4c66-8d2a-f40d3a3b649f.png)
