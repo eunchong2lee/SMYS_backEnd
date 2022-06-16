@@ -72,7 +72,7 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 # Table 설계
 
 
-# <img width=50px; alt="스웨거 로고" src="https://stackjava.com/wp-content/uploads/2018/05/swagger-icon-300x300.png #style=width:4px;"> swagger
+# <img width=50px; alt="스웨거 로고" src="https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg"> swagger
 ![스웨거1](https://user-images.githubusercontent.com/81402579/174002638-52cabd6b-de27-4062-9968-02a6086ba231.png)
 ![스웨거2](https://user-images.githubusercontent.com/81402579/174002649-5135281e-c3f5-46df-9ab1-b09244c0358d.png)
 ![스웨거3](https://user-images.githubusercontent.com/81402579/174002658-34329e29-660c-4c66-8d2a-f40d3a3b649f.png)
