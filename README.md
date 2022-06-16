@@ -53,6 +53,11 @@ Deploy
 
 https://www.notion.so/4-SA-10d2f2e0e96947a8b0eb8237690e0606#a83353ea63f242ff881434099e5de764
 
+# 와이어 프레임
+
+https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-Flow
+
+
 
 # Table 설계
 
