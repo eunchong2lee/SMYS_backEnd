@@ -23,7 +23,7 @@
 😎 BACK-END(3명)
   * 임정현 : 로그인, 회원가입, 마이페이지, swagger, 즐겨찾기 및 즐겨찾기 수, Jwt(accessToken 및 refreshToken)
   
-  * 이은총 : 댓글 CRUD, 댓글 및 게시글 좋아요, 좋아요 수
+  * 이은총 : 댓글 CRUD, 댓글 및 게시글 좋아요, 좋아요 수, multer-s3 지원
    
   * 안재훈 : 게시글 CRUD, multer-s3, da#을 통한 erd 제작  
 
@@ -97,21 +97,27 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 # Trouble Shooting
 
 문제 1: aws-s3 사용 시 s3 bucket에 이미지 업로드 가능 하나 읽기가 안되는 트러블 슈팅 발생
+
 해결 : s3 bucket을 퍼블릭 모드로 변경해야함.
 
 문제 2: RequestTimeTooSkewed S3 이미지 업로드 시 S3 시간과 server 시간의 차이가 커서 나는 에러 발생
+
 해결 : s3 설정에 correctClockSkew: true 추가함.
 
 문제 3: 백엔드 프론트엔드 간 request 불가능 발생
+
 해결 : url 입력 실수로 인한 오타 변경
 
 문제 4: 오타로 인한 여러가지 에러
+
 해결 : 오타 해결
 
 문제 5: swagger cors 에러
+
 해결 : 주소 잘못 입력
 
 문제 6: dotenv .env 파일 못 불러오는 문제
+
 해결 : .env 파일 위치 변경
 
 
