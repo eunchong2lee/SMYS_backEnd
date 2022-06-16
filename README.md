@@ -69,12 +69,16 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 
 
 
-# API 설계
-
 # ERD & Table 설계
 
 ![erd_vo0 2](https://user-images.githubusercontent.com/104499306/174009117-19f073f9-d74c-4151-ac72-220dda85a37d.jpg)
 
+
+# API 설계
+
+<img width="1472" alt="api설계1" src="https://user-images.githubusercontent.com/104499306/174013480-06b74e67-a8ec-42e9-bb68-4146e444e883.png">
+<img width="1472" alt="api설계2" src="https://user-images.githubusercontent.com/104499306/174013496-c251d82b-07fd-4c67-b835-b4b67f1a1d1f.png">
+<img width="1472" alt="api설계3" src="https://user-images.githubusercontent.com/104499306/174013515-10ef6257-5383-4119-8bba-ffe564fe16a1.png">
 
 
 
@@ -85,4 +89,6 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 
 
 # Trouble Shooting
+
+
 
