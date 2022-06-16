@@ -37,9 +37,10 @@ Back-end Library
   * mongoose
   * mongoose-sequence
 
-Develop Library
+Develope Library
   * swagger-jsdoc
   * swagger-ui-express
+  * swagger-autogen
  
 DBMS
   * MongoDB & Mongoose
@@ -47,3 +48,17 @@ DBMS
 Deploy
   * AWS EC2 (Ubuntu 18.04LTS)
   * AWS S3
+
+# 팀 노션 페이지
+
+https://www.notion.so/4-SA-10d2f2e0e96947a8b0eb8237690e0606#a83353ea63f242ff881434099e5de764
+
+
+# Table 설계
+
+
+# swagger
+
+
+
+
