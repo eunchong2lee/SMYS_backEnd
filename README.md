@@ -69,9 +69,9 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 
 
 
-# Table 설계
+# API 설계
 
-# ERD
+# ERD & Table 설계
 
 ![erd_vo0 2](https://user-images.githubusercontent.com/104499306/174009117-19f073f9-d74c-4151-ac72-220dda85a37d.jpg)
 
