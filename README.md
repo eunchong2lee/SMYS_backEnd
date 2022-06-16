@@ -71,6 +71,12 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 
 # Table 설계
 
+# ERD
+
+![erd_vo0 2](https://user-images.githubusercontent.com/104499306/174009117-19f073f9-d74c-4151-ac72-220dda85a37d.jpg)
+
+
+
 
 # <img width=100px; alt="스웨거 로고" src="https://static1.smartbear.co/swagger/media/assets/images/swagger_logo.svg"> swagger
 ![스웨거1](https://user-images.githubusercontent.com/81402579/174002638-52cabd6b-de27-4062-9968-02a6086ba231.png)
