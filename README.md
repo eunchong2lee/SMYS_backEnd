@@ -3,16 +3,18 @@
 
 다른 사람의 공간들도 확인해보세요!
 
-# 🌎 Web Site
+#  🌎 Web Site
 
-
+http://showmeyourspace.s3-website.ap-northeast-2.amazonaws.com/
 
 #  🎥 시연 영상
 
-# 📆제작 기간
+https://www.youtube.com/watch?v=bVNPAp5qS2Q
+
+#  📆제작 기간
 2022-06-10(금) ~ 2022-06-16(목)
 
-# 💁 팀원소개
+#  💁 팀원소개
 😍 FRONT-END(2명)
   * 이효리 : Signup, Login, Main 페이지
   
