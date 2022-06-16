@@ -134,6 +134,9 @@ https://www.figma.com/file/wNnyH1PuZ3s1ePF9PtxHMP/Show-me-your-space-%ED%94%84%E
 해결 : .env 파일 위치 변경
 
 
+# 더 구현해보고 싶은 기능
 
+ - 대댓글 작성 및 좋아요 추가
+ - 페이지 네이션 기능 추가
 
 
