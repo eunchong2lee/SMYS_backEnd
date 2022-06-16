@@ -10,6 +10,7 @@
   * 이형섭 : Detail, Post, Mypage 페이지
   
   👉 https://github.com/vennydev/SMYS_frontEnd
+
 😎 BACK-END(3명)
   * 임정현 : 로그인, 회원가입, 마이페이지, swagger, 즐겨찾기 및 즐겨찾기 수, Jwt(accessToken 및 refreshToken)
   
