@@ -43,13 +43,13 @@ module.exports = (req, res, next) => {
                 }
             });
         } else {
-            const { nickname } = jwt.verify(tokenValue, process.env.NODE_JWT);
+            const { nicknames } = jwt.verify(tokenValue, process.env.NODE_JWT);
             Users.findOne({ nickname }).exec().then((user) => {
                 res.locals.user = user;
                 next();
             });
         }
-    } catch (err) {
+    } catch (error) {
         res.status(401).send({
             errorMessage: error.message
         });
@@ -60,7 +60,7 @@ function verifyToken(token) {
     try {
         return jwt.verify(token, process.env.NODE_JWT);
 
-    } catch (err) {
+    } catch (error) {
         return error.message;
     };
 };

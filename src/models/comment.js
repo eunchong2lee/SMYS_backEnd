@@ -23,6 +23,7 @@ const commentschema = new mongoose.Schema({
 commentschema.plugin(autoIncrement, {
     inc_field: "commentId",
 });
+commentschema.index({created : -1});
 
 //title, user_id, password, content
 const Comments = mongoose.model("comment", commentschema);
