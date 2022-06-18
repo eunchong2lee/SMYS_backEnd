@@ -25,7 +25,7 @@ https://www.youtube.com/watch?v=bVNPAp5qS2Q
 😎 BACK-END(3명)
   * 임정현 : 로그인, 회원가입, 마이페이지, swagger, 즐겨찾기 및 즐겨찾기 수, Jwt(accessToken 및 refreshToken)
   
-  * 이은총 : DB 설계, 댓글 CRUD, 댓글 및 게시글 좋아요, 좋아요 수, multer-s3(지원)
+  * 이은총 : 댓글 CRUD, 댓글 및 게시글 좋아요, 좋아요 수, multer-s3(지원)
    
   * 안재훈 : 게시글 CRUD, multer-s3, da#을 통한 erd 제작  
 
